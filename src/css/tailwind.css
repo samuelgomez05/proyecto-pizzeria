@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply w-[90%] max-w-7xl mx-auto;
+  }
+
+  .title {
+    @apply flex gap-4 mb-6 text-2xl text-slate-900 font-bold md:mb-8 md:text-3xl;
+  }
+
+  .title-icon {
+    @apply shrink-0 size-8 text-red-500;
+  }
+
+  .btn-primary {
+    @apply custom-focus-visible bg-red-500 py-2 px-4 text-center text-sm text-white transition-all duration-300 rounded-md shadow-md hover:shadow-lg hover:bg-red-600;
+  }
+
+  .link-nav.active {
+    @apply bg-red-500 text-white hover:bg-red-500 hover:text-white md:bg-white md:text-red-500 md:hover:bg-white md:hover:text-red-500;
+  }
+  
+  .custom-focus-visible {
+    @apply focus-visible:outline-double focus-visible:outline-offset-2 focus-visible:outline-red-500 focus-visible:outline-2;
+  }
+
+  .modal {
+    opacity: 0;
+    transition: overlay .3s ease-out, display .3s ease-out, opacity .3s ease-out;
+    transition-behavior: allow-discrete; /* Para animar el display del dialog y demas, al cerrar */
+
+    &::backdrop {
+      opacity: 0;
+      transition: opacity .3s ease-out;
+    }
+
+    /* Cuando el dialog este abierto, restablecemos los estilos */
+    &[open] {
+      opacity: 1;
+  
+      &::backdrop {
+        opacity: 1;
+      }
+  
+      /* Estilos iniciales que se aplicaran cuando abramos el dialog, y tenga esa transicion */
+      @starting-style {
+        opacity: 0;
+  
+        &::backdrop {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+/* STYLES FOR SWIPER */
+.swiper-pagination {
+  @apply !-bottom-8;
+}
+
+.swiper-pagination-bullet {
+  @apply !custom-focus-visible;
+}
+
+.swiper-pagination-bullet-active {
+  @apply !bg-red-500;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply !text-red-500 !custom-focus-visible !hidden after:!text-3xl sm:!flex;
+}
+
+.swiper-button-prev {
+  @apply !-left-4 after:content-['prev'] sm:!-left-8 lg:!-left-10;
+}
+
+.swiper-button-next {
+  @apply !-right-4 after:content-['next'] sm:!-right-8 lg:!-right-10;
+}
